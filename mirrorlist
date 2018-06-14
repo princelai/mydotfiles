@@ -1,17 +1,27 @@
 ##
 ## Manjaro Linux custom mirrorlist
-## Generated on 2018-02-02 12:11
+## Generated on 2018-06-14 22:22
 ##
 ## Please use 'pacman-mirrors -id' to reset custom mirrorlist
 ## Please use 'pacman-mirrors -c all' to reset custom mirrorlist
 ## To remove custom config run  'pacman-mirrors -c all'
 ##
+
 ## Country : China
-Server = https://mirrors.sjtug.sjtu.edu.cn/manjaro/testing/$repo/$arch
+Server = https://mirrors.shuosc.org/manjaro/testing/$repo/$arch
+
+## Country : China
+Server = https://mirrors.shu.edu.cn/manjaro/testing/$repo/$arch
 
 ## Country : China
 Server = http://mirrors.tuna.tsinghua.edu.cn/manjaro/testing/$repo/$arch
 
 ## Country : China
-# Server = https://mirrors.ustc.edu.cn/manjaro/testing/$repo/$arch
+Server = https://mirrors.zju.edu.cn/manjaro/testing/$repo/$arch
+
+## Country : China
+Server = https://mirrors.ustc.edu.cn/manjaro/testing/$repo/$arch
+
+## Country : China
+Server = https://mirrors.sjtug.sjtu.edu.cn/manjarotesting/$repo/$arch
 

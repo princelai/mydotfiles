@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pip --ignore-installed  --requirement pip.txt
+pip install --ignore-installed  --requirement pip.txt

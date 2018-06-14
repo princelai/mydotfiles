@@ -2,4 +2,4 @@
 
 yaourt -Qqtn > yaourt.txt
 pip freeze > pip.txt
-conda list --export > conda.txt
+conda list --export --no-pip > conda.txt
