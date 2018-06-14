@@ -81,9 +81,6 @@ ksystemlog
 kwallet-pam
 kwayland-integration
 kwrited
-leanote
-lib32-flex
-lib32-mesa-demos
 libpng12
 libreoffice-still
 licenses
@@ -117,8 +114,6 @@ networkmanager-openvpn
 networkmanager-pptp
 networkmanager-vpnc
 nfs-utils
-ninja-ide
-nixnote2
 numlockx
 nutstore
 okular
@@ -154,11 +149,9 @@ simple-obfs
 skanlite
 spectacle
 splix
-steam-manjaro
 syncthing-gtk
 sysstat
 systemd-kcm
-telegram-desktop
 telegram-qt
 terminus-font
 tlp
