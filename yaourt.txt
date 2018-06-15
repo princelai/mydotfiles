@@ -42,7 +42,7 @@ fisherman
 flatpak
 freerdp
 gameconqueror
-gcc7
+gcc54
 geckodriver
 giggle
 glsof
@@ -99,6 +99,7 @@ manjaro-kde-settings
 manjaro-pulse
 manjaro-release
 manjaro-settings-manager-kcm
+manjaro-settings-samba
 manjaro-system
 megasync
 meld
@@ -144,9 +145,9 @@ screenfetch
 sddm-breath-theme
 sddm-kcm
 shadowsocks-libev
-shadowsocks-qt5
 simple-obfs
 skanlite
+smb4k
 spectacle
 splix
 syncthing-gtk

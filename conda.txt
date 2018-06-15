@@ -33,8 +33,8 @@ blinker=1.4=py_0
 blosc=1.14.0=1
 bokeh=0.12.16=py36_0
 boto=2.48.0=py36h6e4cd66_1
-boto3=1.7.37=py_0
-botocore=1.10.37=py_0
+boto3=1.7.38=py_0
+botocore=1.10.38=py_0
 bottleneck=1.2.1=py36_1
 bz2file=0.98=py36_0
 bzip2=1.0.6=1
@@ -54,7 +54,6 @@ conda-env=2.6.0=0
 conda-verify=2.0.0=py36_0
 contextlib2=0.5.5=py36_1
 cryptography=2.2.1=py36_0
-cuda91=1.0=h4c16780_0
 curl=7.60.0=0
 cycler=0.10.0=py36_0
 cython=0.28.3=py36_0
