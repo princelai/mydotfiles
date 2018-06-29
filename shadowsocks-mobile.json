@@ -1,0 +1,41 @@
+{
+  "inbound": {
+    "port": 1080,
+    "protocol": "socks",
+    "domainOverride": [
+      "tls",
+      "http"
+    ],
+    "settings": {
+      "auth": "noauth"
+    }
+  },
+  "outbound": {
+    "protocol": "shadowsocks",
+    "settings": {
+      "servers": [
+        {
+          "address": "solarck.top",
+          "method": "chacha20-poly1305",
+          "ota": true,
+          "password": "Kai&&SMM214",
+          "port": 4430
+        },
+        {
+          "address": "lunarch.top",
+          "method": "chacha20-poly1305",
+          "ota": true,
+          "password": "Kai&&SMM214",
+          "port": 4430
+        }
+      ]
+    }
+  },
+  "dns": {
+    "servers": [
+      "8.8.8.8",
+      "8.8.4.4",
+      "localhost"
+    ]
+  }
+}

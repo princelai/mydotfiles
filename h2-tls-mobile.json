@@ -1,0 +1,62 @@
+{
+  "inbound": {
+    "listen": "127.0.0.1",
+    "port": 1080,
+    "protocol": "socks",
+    "domainOverride": [
+      "tls",
+      "http"
+    ],
+    "settings": {
+      "auth": "noauth",
+      "udp": false
+    }
+  },
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "solarck.top",
+          "port": 443,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 16,
+              "security": "chacha20-poly1305"
+            }
+          ]
+        },
+        {
+          "address": "lunarch.top",
+          "port": 443,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 16,
+              "security": "chacha20-poly1305"
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "h2",
+      "security": "tls",
+      "httpSettings": {
+        "path": "/ray"
+      }
+    },
+    "mux": {
+      "enabled": true,
+      "concurrency": 8
+    }
+  },
+  "dns": {
+    "servers": [
+      "8.8.8.8",
+      "8.8.4.4",
+      "localhost"
+    ]
+  }
+}

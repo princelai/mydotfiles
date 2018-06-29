@@ -1,0 +1,89 @@
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log"
+  },
+  "inbound": {
+    "port": 1080,
+    "protocol": "socks",
+    "domainOverride": [
+      "tls",
+      "http"
+    ],
+    "settings": {
+      "auth": "noauth",
+      "udp": true
+    }
+  },
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "solarck.top",
+          "port": 4433,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "chacha20-poly1305"
+            }
+          ]
+        },
+        {
+          "address": "lunarch.top",
+          "port": 4433,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "chacha20-poly1305"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "outboundDetour": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    }
+  ],
+  "dns": {
+    "servers": [
+      "8.8.8.8",
+      "8.8.4.4",
+      "localhost"
+    ]
+  },
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type": "field",
+          "ip": [
+            "geoip:cn",
+            "geoip:private"
+          ],
+          "port": "0-1000",
+          "network": "tcp,udp",
+          "outboundTag": "direct"
+        },
+        {
+          "type": "field",
+          "domain": [
+            "geosite:cn"
+          ],
+          "port": "0-1000",
+          "network": "tcp,udp",
+          "outboundTag": "direct"
+        }
+      ]
+    }
+  }
+}
