@@ -1,7 +1,37 @@
 # mydotfiles
 
-save those files to `~/.config/dotfiles/`
+# first clone
 
-./exportprogram.sh
+```bash
+git clone git@github.com:princelai/mydotfiles.git ~/config/dotfiles
+```
 
-./filteprogram.py
+
+
+# sync with git
+
+```bash
+git push origin master
+```
+
+```
+got pull origin master
+```
+
+
+
+# backup
+
+```bash
+cd ~/.config/dotfiles/bin/
+
+```
+
+
+
+# restore
+
+```bash
+cd ~/.config/dotfiles/bin/
+```
+
