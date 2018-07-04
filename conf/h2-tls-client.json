@@ -50,10 +50,6 @@
       "httpSettings": {
         "path": "/get"
       }
-    },
-    "mux": {
-      "enabled": true,
-      "concurrency": 8
     }
   },
   "outboundDetour": [

@@ -9,7 +9,7 @@ Created on Thu Jun 28 13:58:17 2018
 import pexpect
 import logging
 from pathlib import Path
-from time import sleep
+
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
@@ -37,19 +37,20 @@ class ChangeV2ray:
     def cp_files_client(self):
         logging.info('copy files at client')
         child = pexpect.spawn('zsh -c "su root"')
-        #child.expect('密码：')
+        child.expect('[pP]assword:')
         child.sendline("Kai&&SMM214")
-        #child.expect('\[.+\][#$]')
-        child.sendline(f"cp {' '.join(self.client_files)} /etc/v2ray/")
-        #child.expect('\[.+\][#$]')
+        child.expect('\[.+\][#$]')
+        child.sendline(f"yes | cp -f {' '.join(self.client_files)} /etc/v2ray/")
+        child.expect('\[.+\][#$]')
         child.close()
 
     def cp_files_server(self):
         logging.info('copy files at server')
         for k,cmd in self.scpcmd.items():
-            child = pexpect.spawn(cmd.format(' '.join(self.server_files)))
-            #child.expect(pexpect.EOF)
-            sleep(3)
+            child = pexpect.spawn('bash')
+            child.expect('\[.+\][#$]')
+            child.sendline(cmd.format(' '.join(self.server_files)))
+            child.expect('\[.+\][#$]')
             child.close()
 
     #for client
@@ -57,9 +58,9 @@ class ChangeV2ray:
         
         #change to root
         child = pexpect.spawn('zsh -c "su root"')
-        #child.expect('.+assword:')
+        child.expect('[pP]assword:')
         child.sendline("Kai&&SMM214")
-        child.expect('#')
+        child.expect('\[.+\][#$]')
         #stop
         logging.info('stop service at client')
         child.sendline("systemctl |grep v2ray@ |awk '{print $1}'")

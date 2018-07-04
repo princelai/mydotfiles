@@ -33,14 +33,14 @@ for path in files:
     # sync_exist = sync.exists()
     cmd = 'meld {} {}'.format(raw,sync)
     if not raw_exist:
-        subprocess.run(f'sudo mkdir {raw.parent}',shell=True, executable='/usr/bin/zsh')
-        subprocess.run(f'sudo chown {uid} {raw.parent}',shell=True, executable='/usr/bin/zsh')
-        subprocess.run(f'sudo chgrp {gid} {raw.parent}',shell=True, executable='/usr/bin/zsh')
-        subprocess.run(f'sudo touch {raw}',shell=True, executable='/usr/bin/zsh')
-        subprocess.run(f'sudo chown {uid} {raw}',shell=True, executable='/usr/bin/zsh')
-        subprocess.run(f'sudo chgrp {gid} {raw}',shell=True, executable='/usr/bin/zsh')
+        subprocess.run(f'kdesu -c "mkdir {raw.parent}"',shell=True, executable='/usr/bin/zsh')
+        subprocess.run(f'kdesu -c "chown {uid} {raw.parent}"',shell=True, executable='/usr/bin/zsh')
+        subprocess.run(f'kdesu -c "chgrp {gid} {raw.parent}"',shell=True, executable='/usr/bin/zsh')
+        subprocess.run(f'kdesu -c "touch {raw}"',shell=True, executable='/usr/bin/zsh')
+        subprocess.run(f'kdesu -c "chown {uid} {raw}"',shell=True, executable='/usr/bin/zsh')
+        subprocess.run(f'kdesu -c "chgrp {gid} {raw}"',shell=True, executable='/usr/bin/zsh')
     if raw.owner() == 'root':
-        subprocess.run(f'sudo {cmd}',shell=True, executable='/usr/bin/zsh')
+        subprocess.run(f'kdesu -c "{cmd}"',shell=True, executable='/usr/bin/zsh')
     else:
         subprocess.run(f'{cmd}',shell=True, executable='/usr/bin/zsh')
 
