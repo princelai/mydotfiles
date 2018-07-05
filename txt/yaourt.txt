@@ -58,6 +58,7 @@ gwenview
 hexchat
 hplip
 htop
+iftop
 imagewriter
 inkscape
 intel-ucode
@@ -87,7 +88,7 @@ kwayland-integration
 kwrited
 lantern-bin
 libpng12
-libreoffice-still
+libreoffice-fresh-zh-cn
 licenses
 linux414-nvidia
 logrotate
@@ -115,6 +116,7 @@ mongodb
 mtpfs
 mtr
 nano
+neofetch
 networkmanager-dispatcher-ntpd
 networkmanager-openconnect
 networkmanager-openvpn
