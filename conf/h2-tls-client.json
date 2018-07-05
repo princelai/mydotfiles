@@ -20,8 +20,8 @@
     "protocol": "vmess",
     "settings": {
       "vnext": [
-        {
-          "address": "solarck.top",
+      {
+          "address": "lunarch.top",
           "port": 443,
           "users": [
             {
@@ -31,8 +31,8 @@
             }
           ]
         },
-        {
-          "address": "lunarch.top",
+      {
+          "address": "solarck.top",
           "port": 443,
           "users": [
             {
@@ -61,10 +61,10 @@
   ],
   "dns": {
     "servers": [
-      "208.67.222.222",
-      "208.67.220.220",
       "101.6.6.6",
-      "localhost"
+      "101.132.183.99",
+      "193.112.15.186",
+      "8.8.8.8"
     ]
   },
   "routing": {
@@ -72,6 +72,12 @@
     "settings": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
+        {
+         "type": "field",
+         "port": 53,
+         "network": "udp",
+         "outboundTag": "direct"
+        },
         {
           "type": "field",
           "ip": [
