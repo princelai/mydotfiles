@@ -1,0 +1,95 @@
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log"
+  },
+  "inbound": {
+    "port": 1080,
+    "protocol": "socks",
+    "domainOverride": [
+      "tls",
+      "http"
+    ],
+    "settings": {
+      "auth": "noauth"
+    }
+  },
+  "outbound": {
+    "protocol": "shadowsocks",
+    "settings": {
+      "servers": [
+        {
+          "address": "servser.org",
+          "method": "chacha20-poly1305",
+          "password": "password",
+          "port": 8443
+        },
+        {
+          "address": "servser.org",
+          "method": "chacha20-poly1305",
+          "password": "password",
+          "port": 8443
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "mkcp",
+      "kcpSettings": {
+        "mtu": 1350,
+        "tti": 20,
+        "uplinkCapacity": 10,
+        "downlinkCapacity": 100,
+        "congestion": false,
+        "readBufferSize": 2,
+        "writeBufferSize": 2,
+        "header": {
+          "type": "none"
+        }
+      }
+    }
+  },
+  "outboundDetour": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    }
+  ],
+  "dns": {
+    "servers": [
+      "101.6.6.6",
+      "101.132.183.99",
+      "193.112.15.186",
+      "8.8.8.8"
+    ]
+  },
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type": "field",
+          "ip": [
+            "geoip:cn",
+            "geoip:private",
+            "172.168.0.0/16"
+          ],
+          "port": "0-10000",
+          "network": "tcp,udp",
+          "outboundTag": "direct"
+        },
+        {
+          "type": "field",
+          "domain": [
+            "geosite:cn"
+          ],
+          "port": "0-10000",
+          "network": "tcp,udp",
+          "outboundTag": "direct"
+        }
+      ]
+    }
+  }
+}

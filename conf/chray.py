@@ -16,12 +16,12 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 
 class ChangeV2ray:
     def __init__(self):
-        option = {1:'shadowsocks',2:'h2-tls',3:'dynamicport'}
+        option = {1:'H2CanddyTLS',2:'mKcp',3:'H2-TLS',4:'SS-mKcp',5:'SS-TLS'}
         self.server = {"kvmcn2":"ssh -p 28777 root@lunarch.top",
                        "kvmqnet":"ssh -p 28777 root@solarck.top"}
         self.scpcmd = {"kvmcn2":"scp -P 28777 {} root@lunarch.top:/etc/v2ray/",
                        "kvmqnet":"scp -P 28777 {} root@solarck.top:/etc/v2ray/"}
-        key_num = int(input('Please select fq method:\n\t1).shadowsocks\n\t2).h2-tls\n\t3).dynamic-port\n'))
+        key_num = int(input('Please select fq method:\n\t1).H2CanddyTLS\n\t2).mKcp\n\t3).H2-TLS\n\t4).SS-mKcp\n\t5).SS-TLS\n:'))
         self.new_service_prefix = option.get(key_num)
         p = Path('~/.config/dotfiles/conf').expanduser()
         # dir_files = os.listdir(os.path.expanduser('~/.config/dotfiles'))

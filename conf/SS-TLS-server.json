@@ -6,22 +6,19 @@
   },
   "inbound": {
     "port": 443,
-    "protocol": "vmess",
+    "protocol": "socks",
     "settings": {
-      "clients": [
-        {
-          "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
-          "alterId": 32,
-          "security": "auto"
-        }
+      "auth": "password",
+      "accounts": [
+      {
+      "user": "hello",
+      "pass": "3.1415"
+      }
       ]
     },
     "streamSettings": {
-      "network": "h2",
+      "network": "tcp",
       "security": "tls",
-      "httpSettings": {
-        "path": "/get"
-      },
       "tlsSettings": {
         "certificates": [
           {

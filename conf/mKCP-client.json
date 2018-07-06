@@ -12,15 +12,14 @@
       "http"
     ],
     "settings": {
-      "auth": "noauth",
-      "udp": false
+      "auth": "noauth"
     }
   },
   "outbound": {
     "protocol": "vmess",
     "settings": {
       "vnext": [
-      {
+        {
           "address": "lunarch.top",
           "port": 443,
           "users": [
@@ -31,7 +30,7 @@
             }
           ]
         },
-      {
+        {
           "address": "solarck.top",
           "port": 443,
           "users": [
@@ -45,10 +44,18 @@
       ]
     },
     "streamSettings": {
-      "network": "h2",
-      "security": "tls",
-      "httpSettings": {
-        "path": "/get"
+      "network": "mkcp",
+      "kcpSettings": {
+        "mtu": 1350,
+        "tti": 20,
+        "uplinkCapacity": 10,
+        "downlinkCapacity": 100,
+        "congestion": false,
+        "readBufferSize": 2,
+        "writeBufferSize": 2,
+        "header": {
+          "type": "none"
+        }
       }
     }
   },
@@ -72,12 +79,6 @@
     "settings": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
-        {
-         "type": "field",
-         "port": 53,
-         "network": "udp",
-         "outboundTag": "direct"
-        },
         {
           "type": "field",
           "ip": [

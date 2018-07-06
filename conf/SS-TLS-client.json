@@ -12,37 +12,38 @@
       "http"
     ],
     "settings": {
-      "auth": "noauth",
-      "udp": true
+      "auth": "noauth"
     }
   },
   "outbound": {
-    "protocol": "vmess",
+    "protocol": "socks",
     "settings": {
-      "vnext": [
+      "servers": [
         {
-          "address": "solarck.top",
-          "port": 4433,
+          "address": "lunarch.top",
+          "port": 443,
           "users": [
             {
-              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
-              "alterId": 32,
-              "security": "auto"
+              "user": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "pass": 32
             }
           ]
         },
         {
-          "address": "lunarch.top",
-          "port": 4433,
+          "address": "solarck.top",
+          "port": 443,
           "users": [
             {
-              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
-              "alterId": 32,
-              "security": "auto"
+              "user": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "pass": 32
             }
           ]
         }
       ]
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "security": "tls"
     }
   },
   "outboundDetour": [
@@ -54,9 +55,10 @@
   ],
   "dns": {
     "servers": [
-      "119.29.29.29",
-      "8.8.8.8",
-      "localhost"
+      "101.6.6.6",
+      "101.132.183.99",
+      "193.112.15.186",
+      "8.8.8.8"
     ]
   },
   "routing": {
@@ -68,9 +70,10 @@
           "type": "field",
           "ip": [
             "geoip:cn",
-            "geoip:private"
+            "geoip:private",
+            "172.168.0.0/16"
           ],
-          "port": "0-1000",
+          "port": "0-10000",
           "network": "tcp,udp",
           "outboundTag": "direct"
         },
@@ -79,7 +82,7 @@
           "domain": [
             "geosite:cn"
           ],
-          "port": "0-1000",
+          "port": "0-10000",
           "network": "tcp,udp",
           "outboundTag": "direct"
         }

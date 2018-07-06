@@ -5,39 +5,34 @@
     "error": "/var/log/v2ray/error.log"
   },
   "inbound": {
-    "port": 4433,
+    "port": 443,
     "protocol": "vmess",
     "settings": {
       "clients": [
         {
           "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
           "alterId": 32,
-          "security": "chacha20-poly1305"
+          "security": "auto",
+          "udp": true
         }
-      ],
-      "detour": {
-        "to": "dynamicPort"
+      ]
+    },
+    "streamSettings": {
+      "network": "h2",
+      "security": "tls",
+      "httpSettings": {
+        "path": "/get"
+      },
+      "tlsSettings": {
+        "certificates": [
+          {
+            "certificateFile": "/etc/v2ray/v2ray.crt",
+            "keyFile": "/etc/v2ray/v2ray.key"
+          }
+        ]
       }
     }
   },
-  "inboundDetour": [
-    {
-      "protocol": "vmess",
-      "port": "10000-20000",
-      "tag": "dynamicPort",
-      "settings": {
-        "default": {
-          "level": 1,
-          "alterId": 16
-        }
-      },
-      "allocate": {
-        "strategy": "random",
-        "concurrency": 3,
-        "refresh": 5
-      }
-    }
-  ],
   "outbound": {
     "protocol": "freedom",
     "settings": {}
