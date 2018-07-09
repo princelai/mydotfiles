@@ -16,26 +16,47 @@
     }
   },
   "outbound": {
-    "protocol": "shadowsocks",
+    "protocol": "vmess",
     "settings": {
-      "servers": [
+      "vnext": [
         {
           "address": "lunarch.top",
-          "port": 8443,
-          "method":"chacha20-poly1305",
-          "password":"Kai&&SMM214"
+          "port": 8082,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "auto"
+            }
+          ]
         },
         {
           "address": "solarck.top",
-          "port": 8443,
-          "method":"chacha20-poly1305",
-          "password":"Kai&&SMM214"
+          "port": 8082,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "auto"
+            }
+          ]
         }
       ]
     },
     "streamSettings": {
-      "network": "tcp",
-      "security": "tls"
+      "network": "mkcp",
+      "kcpSettings": {
+        "mtu": 1350,
+        "tti": 20,
+        "uplinkCapacity": 10,
+        "downlinkCapacity": 100,
+        "congestion": false,
+        "readBufferSize": 2,
+        "writeBufferSize": 2,
+        "header": {
+          "type": "none"
+        }
+      }
     }
   },
   "outboundDetour": [

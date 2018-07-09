@@ -1,0 +1,10 @@
+{
+  "server": "0.0.0.0",
+  "server_port": 8080,
+  "local_port": 1080,
+  "password": "Kai&&SMM214",
+  "timeout": 100,
+  "method": "chacha20-ietf-poly1305",
+  "mode": "tcp_and_udp",
+  "fast_open": true
+}

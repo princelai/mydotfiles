@@ -20,16 +20,16 @@
     "settings": {
       "servers": [
         {
-          "address": "servser.org",
+          "address": "lunarch.top",
           "method": "chacha20-poly1305",
-          "password": "password",
-          "port": 8443
+          "password": "Kai&&SMM214",
+          "port": 8081
         },
         {
-          "address": "servser.org",
+          "address": "solarck.top",
           "method": "chacha20-poly1305",
-          "password": "password",
-          "port": 8443
+          "password": "Kai&&SMM214",
+          "port": 8081
         }
       ]
     },

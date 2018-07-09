@@ -5,12 +5,12 @@
     "error": "/var/log/v2ray/error.log"
   },
   "inbound": {
-    "port": 8443,
+    "port": 8081,
     "protocol": "shadowsocks",
     "settings": {
       "method": "chacha20-poly1305",
-      "password": "password",
-      "udp": false
+      "password": "Kai&&SMM214",
+      "udp": true
     },
     "streamSettings": {
       "network": "mkcp",
