@@ -12,7 +12,8 @@
       "http"
     ],
     "settings": {
-      "auth": "noauth"
+      "auth": "noauth",
+      "udp": true
     }
   },
   "outbound": {
@@ -49,7 +50,7 @@
         "mtu": 1350,
         "tti": 20,
         "uplinkCapacity": 10,
-        "downlinkCapacity": 100,
+        "downlinkCapacity": 50,
         "congestion": false,
         "readBufferSize": 2,
         "writeBufferSize": 2,
@@ -86,7 +87,7 @@
             "geoip:private",
             "172.168.0.0/16"
           ],
-          "port": "0-10000",
+          "port": "0-1024",
           "network": "tcp,udp",
           "outboundTag": "direct"
         },
@@ -95,7 +96,7 @@
           "domain": [
             "geosite:cn"
           ],
-          "port": "0-10000",
+          "port": "0-1024",
           "network": "tcp,udp",
           "outboundTag": "direct"
         }

@@ -12,7 +12,8 @@
       "http"
     ],
     "settings": {
-      "auth": "noauth"
+      "auth": "noauth",
+      "udp": true
     }
   },
   "outbound": {
@@ -30,6 +31,12 @@
           "method": "chacha20-poly1305",
           "password": "Kai&&SMM214",
           "port": 8081
+        },
+        {
+          "address": "chenwrt.top",
+          "method": "chacha20-poly1305",
+          "password": "Kai&&SMM214",
+          "port": 8081
         }
       ]
     },
@@ -39,12 +46,12 @@
         "mtu": 1350,
         "tti": 20,
         "uplinkCapacity": 10,
-        "downlinkCapacity": 100,
+        "downlinkCapacity": 50,
         "congestion": false,
         "readBufferSize": 2,
         "writeBufferSize": 2,
         "header": {
-          "type": "none"
+            "type": "dtls"
         }
       }
     }
@@ -60,7 +67,7 @@
     "servers": [
       "101.6.6.6",
       "101.132.183.99",
-      "193.112.15.186",
+      "223.113.97.99",
       "8.8.8.8"
     ]
   },
@@ -76,7 +83,7 @@
             "geoip:private",
             "172.168.0.0/16"
           ],
-          "port": "0-10000",
+          "port": "0-1024",
           "network": "tcp,udp",
           "outboundTag": "direct"
         },
@@ -85,7 +92,7 @@
           "domain": [
             "geosite:cn"
           ],
-          "port": "0-10000",
+          "port": "0-1024",
           "network": "tcp,udp",
           "outboundTag": "direct"
         }

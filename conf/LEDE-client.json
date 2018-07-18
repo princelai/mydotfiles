@@ -16,10 +16,31 @@
       "udp": true
     }
   },
+  "inboundDetour": [
+    {
+      "port": 1060,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "network": "tcp",
+        "followRedirect": true
+      }
+    }
+  ],
   "outbound": {
     "protocol": "vmess",
     "settings": {
       "vnext": [
+        {
+          "address": "solarck.top",
+          "port": 443,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "none"
+            }
+          ]
+        },
         {
           "address": "lunarch.top",
           "port": 443,
@@ -32,7 +53,7 @@
           ]
         },
         {
-          "address": "solarck.top",
+          "address": "chenwrt.top",
           "port": 443,
           "users": [
             {
@@ -47,9 +68,6 @@
     "streamSettings": {
       "network": "tcp",
       "security": "tls"
-    },
-    "mux": {
-      "enabled": true
     }
   },
   "outboundDetour": [
@@ -79,7 +97,7 @@
             "geoip:private",
             "172.168.0.0/16"
           ],
-          "port": "0-10000",
+          "port": "0-1024",
           "network": "tcp,udp",
           "outboundTag": "direct"
         },
@@ -88,7 +106,7 @@
           "domain": [
             "geosite:cn"
           ],
-          "port": "0-10000",
+          "port": "0-1024",
           "network": "tcp,udp",
           "outboundTag": "direct"
         }
