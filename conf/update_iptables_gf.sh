@@ -4,6 +4,8 @@ curl $chnroute_url | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-
 
 # Create new chain
 iptables -t nat -N V2RAY
+iptables -t mangle -N V2RAY
+iptables -t mangle -N V2RAY_MARK
 
 # Ignore your V2Ray server's addresses
 iptables -t nat -A V2RAY -d 95.169.10.107 -j RETURN
@@ -36,7 +38,15 @@ iptables -t nat -A V2RAY -m set --match-set chnroute dst -j RETURN
 
 # Anything else should be redirected to Dokodemo-door's local port
 iptables -t nat -A V2RAY -p tcp -j REDIRECT --to-ports 1060
-iptables -t nat -A PREROUTING -p tcp -j V2RAY
-iptables -t nat -A V2RAY -p udp -j REDIRECT --to-ports 1060
-iptables -t nat -A PREROUTING -p udp -j V2RAY
+
+# Add any UDP rules
+ip route add local default dev lo table 100
+ip rule add fwmark 1 lookup 100
+iptables -t mangle -A V2RAY -p udp --dport 53 -j TPROXY --on-port 1060 --tproxy-mark 0x01/0x01
+iptables -t mangle -A V2RAY_MARK -p udp --dport 53 -j MARK --set-mark 1
+
+# Apply the rules
+iptables -t nat -A OUTPUT -p tcp -j V2RAY
+iptables -t mangle -A PREROUTING -j V2RAY
+iptables -t mangle -A OUTPUT -j V2RAY_MARK
 exit 0

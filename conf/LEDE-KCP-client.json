@@ -16,12 +16,23 @@
       "udp": true
     }
   },
+  "inboundDetour": [
+    {
+      "domainOverride": ["tls","http"],
+      "port": 1060,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "network": "tcp,udp",
+        "followRedirect": true
+      }
+    }
+  ],
   "outbound": {
     "protocol": "vmess",
     "settings": {
       "vnext": [
         {
-          "address": "lunarch.top",
+          "address": "solarck.top",
           "port": 8082,
           "users": [
             {
@@ -32,7 +43,7 @@
           ]
         },
         {
-          "address": "solarck.top",
+          "address": "lunarch.top",
           "port": 8082,
           "users": [
             {
