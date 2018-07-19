@@ -1,6 +1,6 @@
-#!/bin/ash 
+#!/bin/ash
 chnroute_url=http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
-curl $chnroute_url | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > /tmp/chnroute.txt
+curl $chnroute_url | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' >/tmp/chnroute.txt
 
 # Create new chain
 iptables -t nat -N V2RAY
@@ -27,8 +27,7 @@ iptables -t nat -A V2RAY -d 240.0.0.0/4 -j RETURN
 
 # Ignore chinaroute
 ipset create chnroute hash:net
-for i in `cat /tmp/chnroute.txt`;
-do
+for i in $(cat /tmp/chnroute.txt); do
   ipset add chnroute $i
 done
 
