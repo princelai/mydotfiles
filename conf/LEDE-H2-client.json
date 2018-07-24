@@ -70,8 +70,11 @@
             ]
         },
         "streamSettings": {
-            "network": "tcp",
-            "security": "tls"
+            "network": "h2",
+            "security": "tls",
+            "httpSettings": {
+                "path": "/h2ray"
+            }
         },
         "mux": {
             "enabled": true,

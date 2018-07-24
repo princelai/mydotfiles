@@ -1,0 +1,19 @@
+http://example.top {
+ redir https://example.top{url}
+}
+
+https://example.top {
+    tls princelailai@gmail.com
+    root /var/www/
+    log /var/caddy/log
+
+    proxy /h2ray localhost:10010 {
+        header_upstream Host "example.top"
+        header_upstream X-Forwarded-Proto "https"
+    }
+    
+    proxy /wsray localhost:10086 {
+        websocket
+        header_upstream -Origin
+    }
+}

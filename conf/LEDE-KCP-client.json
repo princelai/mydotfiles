@@ -41,7 +41,7 @@
                         {
                             "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
                             "alterId": 32,
-                            "security": "auto"
+                            "security": "none"
                         }
                     ]
                 },
@@ -52,7 +52,7 @@
                         {
                             "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
                             "alterId": 32,
-                            "security": "auto"
+                            "security": "none"
                         }
                     ]
                 },
@@ -63,7 +63,7 @@
                         {
                             "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
                             "alterId": 32,
-                            "security": "auto"
+                            "security": "none"
                         }
                     ]
                 }
@@ -98,10 +98,9 @@
     ],
     "dns": {
         "servers": [
-            "101.6.6.6",
-            "101.132.183.99",
-            "193.112.15.186",
-            "8.8.8.8"
+            "8.8.8.8",
+            "8.8.4.4",
+            "localhost"
         ]
     },
     "routing": {
