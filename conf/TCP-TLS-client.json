@@ -1,106 +1,137 @@
 {
-    "log": {
-        "loglevel": "warning",
-        "access": "/var/log/v2ray/access.log",
-        "error": "/var/log/v2ray/error.log"
+  "log": {
+    "loglevel": "info",
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log"
+  },
+  "inbound": {
+    "port": 1080,
+    "protocol": "socks",
+    "domainOverride": ["tls", "http"],
+    "sniffing": {
+      "enabled": true,
+      "destOverride": ["http", "tls"]
     },
-    "inbound": {
-        "port": 1080,
-        "protocol": "socks",
-        "domainOverride": [
-            "tls",
-            "http"
-        ],
-        "settings": {
-            "auth": "noauth",
-            "udp": true
-        }
-    },
-    "outbound": {
-        "protocol": "vmess",
-        "settings": {
-            "vnext": [
-                {
-                    "address": "solarck.top",
-                    "port": 443,
-                    "users": [
-                        {
-                            "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
-                            "alterId": 32,
-                            "security": "auto"
-                        }
-                    ]
-                },
-                {
-                    "address": "lunarch.top",
-                    "port": 443,
-                    "users": [
-                        {
-                            "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
-                            "alterId": 32,
-                            "security": "auto"
-                        }
-                    ]
-                },
-                {
-                    "address": "chenwrt.top",
-                    "port": 443,
-                    "users": [
-                        {
-                            "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
-                            "alterId": 32,
-                            "security": "auto"
-                        }
-                    ]
-                }
-            ]
-        },
-        "streamSettings": {
-            "network": "tcp",
-            "security": "tls"
-        }
-    },
-    "outboundDetour": [
-        {
-            "protocol": "freedom",
-            "settings": {},
-            "tag": "direct"
-        }
-    ],
-    "dns": {
-        "servers": [
-            "101.6.6.6",
-            "101.132.183.99",
-            "193.112.15.186",
-            "8.8.8.8"
-        ]
-    },
-    "routing": {
-        "strategy": "rules",
-        "settings": {
-            "domainStrategy": "IPIfNonMatch",
-            "rules": [
-                {
-                    "type": "field",
-                    "ip": [
-                        "geoip:cn",
-                        "geoip:private",
-                        "172.168.0.0/16"
-                    ],
-                    "port": "0-1024",
-                    "network": "tcp,udp",
-                    "outboundTag": "direct"
-                },
-                {
-                    "type": "field",
-                    "domain": [
-                        "geosite:cn"
-                    ],
-                    "port": "0-1024",
-                    "network": "tcp,udp",
-                    "outboundTag": "direct"
-                }
-            ]
-        }
+    "settings": {
+      "auth": "noauth",
+      "udp": true
     }
+  },
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "solarck.top",
+          "port": 443,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "auto",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "address": "lunarch.top",
+          "port": 443,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "auto",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "address": "chenwrt.top",
+          "port": 443,
+          "users": [
+            {
+              "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+              "alterId": 32,
+              "security": "auto",
+              "level": 0
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "security": "tls"
+    },
+    "mux": {
+      "enabled": true,
+      "concurrency": 8
+    }
+  },
+  "outboundDetour": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "block"
+    }
+  ],
+  "dns": {
+    "servers": ["8.8.8.8", "8.8.4.4", "localhost"]
+  },
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type": "field",
+          "ip": ["geoip:cn", "geoip:private", "172.168.0.0/16"],
+          "port": "0-1024",
+          "network": "tcp,udp",
+          "outboundTag": "direct"
+        },
+        {
+          "type": "field",
+          "domain": ["geosite:cn"],
+          "port": "0-1024",
+          "network": "tcp,udp",
+          "outboundTag": "direct"
+        },
+        {
+          "type": "field",
+          "outboundTag": "direct",
+          "network": "tcp,udp",
+          "domain": ["ext:h2y.dat:top500_direct"]
+        },
+        {
+          "type": "field",
+          "outboundTag": "block",
+          "network": "tcp,udp",
+          "domain": ["ext:h2y.dat:mad", "ext:h2y.dat:ad"]
+        }
+      ]
+    }
+  },
+  "policy": {
+    "levels": {
+      "0": {
+        "handshake": 4,
+        "connIdle": 300,
+        "uplinkOnly": 2,
+        "downlinkOnly": 5,
+        "statsUserUplink": false,
+        "statsUserDownlink": false,
+        "bufferSize": 1024
+      }
+    },
+    "system": {
+      "statsInboundUplink": false,
+      "statsInboundDownlink": false
+    }
+  }
 }

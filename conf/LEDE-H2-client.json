@@ -8,6 +8,10 @@
     "port": 1080,
     "protocol": "socks",
     "domainOverride": ["tls", "http"],
+    "sniffing": {
+      "enabled": true,
+      "destOverride": ["http", "tls"]
+    },
     "settings": {
       "auth": "noauth",
       "udp": true
@@ -16,6 +20,10 @@
   "inboundDetour": [
     {
       "domainOverride": ["tls", "http"],
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
       "port": 1060,
       "protocol": "dokodemo-door",
       "settings": {
@@ -35,7 +43,8 @@
             {
               "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
               "alterId": 32,
-              "security": "none"
+              "security": "auto",
+              "level": 0
             }
           ]
         },
@@ -46,7 +55,8 @@
             {
               "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
               "alterId": 32,
-              "security": "none"
+              "security": "auto",
+              "level": 0
             }
           ]
         },
@@ -57,7 +67,8 @@
             {
               "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
               "alterId": 32,
-              "security": "none"
+              "security": "auto",
+              "level": 0
             }
           ]
         }
@@ -111,10 +122,34 @@
         },
         {
           "type": "field",
+          "outboundTag": "direct",
+          "network": "tcp,udp",
+          "domain": ["ext:h2y.dat:top500_direct"]
+        },
+        {
+          "type": "field",
           "outboundTag": "block",
+          "network": "tcp,udp",
           "domain": ["ext:h2y.dat:mad", "ext:h2y.dat:ad"]
         }
       ]
+    }
+  },
+  "policy": {
+    "levels": {
+      "0": {
+        "handshake": 4,
+        "connIdle": 300,
+        "uplinkOnly": 2,
+        "downlinkOnly": 5,
+        "statsUserUplink": false,
+        "statsUserDownlink": false,
+        "bufferSize": 1024
+      }
+    },
+    "system": {
+      "statsInboundUplink": false,
+      "statsInboundDownlink": false
     }
   }
 }
