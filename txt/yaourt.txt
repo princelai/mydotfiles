@@ -50,11 +50,14 @@ geckodriver
 giggle
 glsof
 gnome-icon-theme
+go
 goaccess
 gperf
 grub
 gsfonts
+gtk-theme-breath
 gwenview
+haproxy
 hexchat
 hplip
 htop
@@ -63,6 +66,9 @@ imagewriter
 inkscape
 intel-ucode
 inxi
+iperf
+iperf3
+ipset
 iputils
 ipw2100-fw
 ipw2200-fw
@@ -90,7 +96,7 @@ lantern-bin
 libpng12
 libreoffice-fresh-zh-cn
 licenses
-linux414-nvidia
+linux418-nvidia
 logrotate
 make
 man-pages
@@ -136,6 +142,7 @@ patchutils
 pkgconf
 plasma-desktop
 plasma-pa
+plasma5-themes-breath
 poedit
 powertop
 print-manager
@@ -143,6 +150,7 @@ pulseaudio-ctl
 pulseaudio-zeroconf
 pycharm-community-edition
 pygmentize
+python-sip
 qbittorrent
 qgit
 qt5-translations
@@ -154,6 +162,7 @@ sddm-breath-theme
 sddm-kcm
 shadowsocks-libev
 simple-obfs
+sip
 skanlite
 smb4k
 spectacle
@@ -167,6 +176,7 @@ tlp
 transcode
 ttf-inconsolata
 ttf-indic-otf
+ttf-iosevka-term
 ttf-monaco
 typora
 udiskie
@@ -175,6 +185,7 @@ user-manager
 v2ray
 vi
 vim
+visual-studio-code-bin
 wps-office
 wqy-microhei
 wqy-zenhei
