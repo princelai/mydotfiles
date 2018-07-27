@@ -84,7 +84,7 @@
     }
   ],
   "dns": {
-    "servers": ["8.8.8.8", "8.8.4.4", "localhost"]
+    "servers": ["101.6.6.6", "223.5.5.5", "localhost"]
   },
   "routing": {
     "strategy": "rules",
