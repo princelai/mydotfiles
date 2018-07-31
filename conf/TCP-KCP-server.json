@@ -7,6 +7,7 @@
   "inbound": {
     "port": 443,
     "protocol": "vmess",
+    "tag": "tcp-in",
     "settings": {
       "clients": [
         {
@@ -30,9 +31,44 @@
       }
     }
   },
+  "inboundDetour": [
+    {
+      "port": 8082,
+      "protocol": "vmess",
+      "tag": "kcp-in",
+      "allocate": {
+        "strategy": "always"
+      },
+      "settings": {
+        "clients": [
+          {
+            "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+            "alterId": 32,
+            "security": "auto"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "mkcp",
+        "kcpSettings": {
+          "mtu": 1350,
+          "tti": 30,
+          "uplinkCapacity": 10,
+          "downlinkCapacity": 30,
+          "congestion": false,
+          "readBufferSize": 2,
+          "writeBufferSize": 2,
+          "header": {
+            "type": "dtls"
+          }
+        }
+      }
+    }
+  ],
   "outbound": {
     "protocol": "freedom",
-    "settings": {}
+    "settings": {},
+    "tag": "direct"
   },
   "outboundDetour": [
     {
@@ -48,7 +84,13 @@
         {
           "type": "field",
           "ip": ["geoip:private"],
+          "inboundTag": ["tcp-in", "kcp-in"],
           "outboundTag": "blocked"
+        },
+        {
+          "type": "field",
+          "inboundTag": ["tcp-in", "kcp-in"],
+          "outboundTag": "direct"
         }
       ]
     }

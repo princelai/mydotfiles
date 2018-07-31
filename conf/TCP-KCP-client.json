@@ -7,6 +7,10 @@
   "inbound": {
     "port": 1080,
     "protocol": "socks",
+    "tag": "tcp-in",
+    "allocate": {
+      "strategy": "always"
+    },
     "domainOverride": ["tls", "http"],
     "sniffing": {
       "enabled": true,
@@ -17,8 +21,28 @@
       "udp": true
     }
   },
+  "inboundDetour": [
+    {
+      "port": 1088,
+      "protocol": "socks",
+      "tag": "kcp-in",
+      "allocate": {
+        "strategy": "always"
+      },
+      "domainOverride": ["tls", "http"],
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    }
+  ],
   "outbound": {
     "protocol": "vmess",
+    "tag": "tcp-out",
     "settings": {
       "vnext": [
         {
@@ -78,10 +102,73 @@
       "protocol": "blackhole",
       "settings": {},
       "tag": "block"
+    },
+    {
+      "protocol": "vmess",
+      "tag": "kcp-out",
+      "settings": {
+        "vnext": [
+          {
+            "address": "solarck.top",
+            "port": 8082,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "address": "lunarch.top",
+            "port": 8082,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "address": "chenwrt.top",
+            "port": 8082,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "mkcp",
+        "kcpSettings": {
+          "mtu": 1350,
+          "tti": 30,
+          "uplinkCapacity": 10,
+          "downlinkCapacity": 30,
+          "congestion": false,
+          "readBufferSize": 2,
+          "writeBufferSize": 2,
+          "header": {
+            "type": "dtls"
+          }
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8
+      }
     }
   ],
   "dns": {
-    "servers": ["101.6.6.6", "223.5.5.5", "localhost"]
+    "servers": ["114.114.114.114", "223.5.5.5", "localhost"]
   },
   "routing": {
     "strategy": "rules",
@@ -93,26 +180,37 @@
           "ip": ["geoip:cn", "geoip:private", "172.168.0.0/16"],
           "port": "0-1024",
           "network": "tcp,udp",
+          "inboundTag": ["tcp-in", "kcp-in"],
           "outboundTag": "direct"
         },
         {
           "type": "field",
-          "domain": ["geosite:cn"],
+          "domain": ["geosite:cn", "ext:h2y.dat:top500_direct"],
           "port": "0-1024",
           "network": "tcp,udp",
+          "inboundTag": ["tcp-in", "kcp-in"],
           "outboundTag": "direct"
         },
         {
           "type": "field",
-          "outboundTag": "direct",
           "network": "tcp,udp",
-          "domain": ["ext:h2y.dat:top500_direct"]
+          "domain": ["ext:h2y.dat:mad", "ext:h2y.dat:ad"],
+          "inboundTag": ["tcp-in", "kcp-in"],
+          "outboundTag": "block"
         },
         {
           "type": "field",
-          "outboundTag": "block",
           "network": "tcp,udp",
-          "domain": ["ext:h2y.dat:mad", "ext:h2y.dat:ad"]
+          "domain": ["ext:h2y.dat:gfw"],
+          "inboundTag": ["tcp-in"],
+          "outboundTag": "tcp-out"
+        },
+        {
+          "type": "field",
+          "network": "tcp,udp",
+          "domain": ["ext:h2y.dat:gfw"],
+          "inboundTag": ["kcp-in"],
+          "outboundTag": "kcp-out"
         }
       ]
     }
@@ -126,7 +224,7 @@
         "downlinkOnly": 5,
         "statsUserUplink": false,
         "statsUserDownlink": false,
-        "bufferSize": 1024
+        "bufferSize": 2048
       }
     },
     "system": {
