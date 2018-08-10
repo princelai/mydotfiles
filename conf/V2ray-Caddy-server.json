@@ -5,9 +5,9 @@
     "error": "/var/log/v2ray/error.log"
   },
   "inbound": {
-    "port": 443,
+    "port": 4430,
     "protocol": "vmess",
-    "tag": "tcp-in",
+    "tag": "ws-in",
     "settings": {
       "clients": [
         {
@@ -20,21 +20,50 @@
       ]
     },
     "streamSettings": {
-      "network": "tcp",
-      "security": "tls",
-      "tlsSettings": {
-        "certificates": [
-          {
-            "certificateFile": "/etc/v2ray/v2ray.crt",
-            "keyFile": "/etc/v2ray/v2ray.key"
-          }
-        ]
-      }
+      "network": "ws"
     }
   },
   "inboundDetour": [
     {
-      "port": 8082,
+      "port": 4431,
+      "protocol": "vmess",
+      "tag": "tcp-in",
+      "settings": {
+        "clients": [
+          {
+            "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+            "alterId": 32,
+            "security": "auto",
+            "udp": true,
+            "level": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp"
+      }
+    },
+    {
+      "port": 4432,
+      "protocol": "vmess",
+      "tag": "h2-in",
+      "settings": {
+        "clients": [
+          {
+            "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+            "alterId": 32,
+            "security": "auto",
+            "udp": true,
+            "level": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "h2"
+      }
+    },
+    {
+      "port": 4433,
       "protocol": "vmess",
       "tag": "kcp-in",
       "allocate": {
@@ -86,12 +115,12 @@
         {
           "type": "field",
           "ip": ["geoip:private"],
-          "inboundTag": ["tcp-in", "kcp-in"],
+          "inboundTag": ["tcp-in", "ws-in", "h2-in", "kcp-in", "ss-in"],
           "outboundTag": "blocked"
         },
         {
           "type": "field",
-          "inboundTag": ["tcp-in", "kcp-in"],
+          "inboundTag": ["tcp-in", "ws-in", "h2-in", "kcp-in", "ss-in"],
           "outboundTag": "direct"
         }
       ]
@@ -106,7 +135,7 @@
         "downlinkOnly": 5,
         "statsUserUplink": false,
         "statsUserDownlink": false,
-        "bufferSize": 2048
+        "bufferSize": 1024
       }
     },
     "system": {

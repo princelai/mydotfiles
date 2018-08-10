@@ -7,12 +7,12 @@ https://example.top {
     root /var/www/
     log /var/caddy/log
 
-    proxy /h2ray localhost:10010 {
+    proxy /h2ray localhost:4432 {
         header_upstream Host "example.top"
         header_upstream X-Forwarded-Proto "https"
     }
-    
-    proxy /wsray localhost:10086 {
+
+    proxy /wsray localhost:4430 {
         websocket
         header_upstream -Origin
     }

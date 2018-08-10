@@ -1,13 +1,13 @@
 {
   "log": {
-    "loglevel": "info",
+    "loglevel": "warning",
     "access": "/var/log/v2ray/access.log",
     "error": "/var/log/v2ray/error.log"
   },
   "inbound": {
     "port": 1080,
     "protocol": "socks",
-    "tag": "tcp-in",
+    "tag": "ws-in",
     "domainOverride": ["tls", "http"],
     "sniffing": {
       "enabled": true,
@@ -20,9 +20,60 @@
   },
   "inboundDetour": [
     {
-      "port": 1088,
+      "port": 1081,
+      "protocol": "socks",
+      "tag": "tcp-in",
+      "allocate": {
+        "strategy": "always"
+      },
+      "domainOverride": ["tls", "http"],
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    },
+    {
+      "port": 1082,
+      "protocol": "socks",
+      "tag": "h2-in",
+      "allocate": {
+        "strategy": "always"
+      },
+      "domainOverride": ["tls", "http"],
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    },
+    {
+      "port": 1083,
       "protocol": "socks",
       "tag": "kcp-in",
+      "allocate": {
+        "strategy": "always"
+      },
+      "domainOverride": ["tls", "http"],
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    },
+    {
+      "port": 1084,
+      "protocol": "socks",
+      "tag": "ss-in",
       "allocate": {
         "strategy": "always"
       },
@@ -39,7 +90,7 @@
   ],
   "outbound": {
     "protocol": "vmess",
-    "tag": "tcp-out",
+    "tag": "ws-out",
     "settings": {
       "vnext": [
         {
@@ -81,10 +132,10 @@
       ]
     },
     "streamSettings": {
-      "network": "h2",
+      "network": "ws",
       "security": "tls",
       "httpSettings": {
-        "path": "/h2ray"
+        "path": "/wsray"
       }
     },
     "mux": {
@@ -105,12 +156,12 @@
     },
     {
       "protocol": "vmess",
-      "tag": "kcp-out",
+      "tag": "tcp-out",
       "settings": {
         "vnext": [
           {
             "address": "solarck.top",
-            "port": 8082,
+            "port": 4431,
             "users": [
               {
                 "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
@@ -122,7 +173,7 @@
           },
           {
             "address": "lunarch.top",
-            "port": 8082,
+            "port": 4431,
             "users": [
               {
                 "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
@@ -134,7 +185,116 @@
           },
           {
             "address": "chenwrt.top",
-            "port": 8082,
+            "port": 4431,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp"
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8
+      }
+    },
+    {
+      "protocol": "vmess",
+      "tag": "h2-out",
+      "settings": {
+        "vnext": [
+          {
+            "address": "solarck.top",
+            "port": 443,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "address": "lunarch.top",
+            "port": 443,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "address": "chenwrt.top",
+            "port": 443,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "h2",
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": true
+        },
+        "httpSettings": {
+          "path": "/h2ray"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8
+      }
+    },
+    {
+      "protocol": "vmess",
+      "tag": "kcp-out",
+      "settings": {
+        "vnext": [
+          {
+            "address": "solarck.top",
+            "port": 4433,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "address": "lunarch.top",
+            "port": 4433,
+            "users": [
+              {
+                "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
+                "alterId": 32,
+                "security": "auto",
+                "level": 0
+              }
+            ]
+          },
+          {
+            "address": "chenwrt.top",
+            "port": 4433,
             "users": [
               {
                 "id": "998c1fa3-962a-4682-a56d-ad262f7f184e",
@@ -180,7 +340,7 @@
           "ip": ["geoip:cn", "geoip:private", "172.168.0.0/16"],
           "port": "0-1024",
           "network": "tcp,udp",
-          "inboundTag": ["tcp-in", "kcp-in"],
+          "inboundTag": ["tcp-in", "ws-in", "h2-in", "kcp-in", "ss-in"],
           "outboundTag": "direct"
         },
         {
@@ -188,14 +348,14 @@
           "domain": ["geosite:cn", "ext:h2y.dat:top500_direct"],
           "port": "0-1024",
           "network": "tcp,udp",
-          "inboundTag": ["tcp-in", "kcp-in"],
+          "inboundTag": ["tcp-in", "ws-in", "h2-in", "kcp-in", "ss-in"],
           "outboundTag": "direct"
         },
         {
           "type": "field",
           "network": "tcp,udp",
           "domain": ["ext:h2y.dat:mad", "ext:h2y.dat:ad"],
-          "inboundTag": ["tcp-in", "kcp-in"],
+          "inboundTag": ["tcp-in", "ws-in", "h2-in", "kcp-in", "ss-in"],
           "outboundTag": "block"
         },
         {
@@ -209,8 +369,29 @@
           "type": "field",
           "network": "tcp,udp",
           "domain": ["ext:h2y.dat:gfw"],
+          "inboundTag": ["ws-in"],
+          "outboundTag": "ws-out"
+        },
+        {
+          "type": "field",
+          "network": "tcp,udp",
+          "domain": ["ext:h2y.dat:gfw"],
+          "inboundTag": ["h2-in"],
+          "outboundTag": "h2-out"
+        },
+        {
+          "type": "field",
+          "network": "tcp,udp",
+          "domain": ["ext:h2y.dat:gfw"],
           "inboundTag": ["kcp-in"],
           "outboundTag": "kcp-out"
+        },
+        {
+          "type": "field",
+          "network": "tcp,udp",
+          "domain": ["ext:h2y.dat:gfw"],
+          "inboundTag": ["ss-in"],
+          "outboundTag": "ss-out"
         }
       ]
     }
@@ -224,7 +405,7 @@
         "downlinkOnly": 5,
         "statsUserUplink": false,
         "statsUserDownlink": false,
-        "bufferSize": 2048
+        "bufferSize": 1024
       }
     },
     "system": {

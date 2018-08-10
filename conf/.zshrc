@@ -20,6 +20,9 @@ export SUDO_EDITOR=kate
 
 alias sshto140='ssh -p 22301 zero2ipo@58.68.234.140'
 alias sshto134='ssh -p 22993 root@58.68.234.134'
+alias sshto94="ssh -p '22' 'root@58.68.246.94'"
+alias sshto250="ssh -p '22' 'root@172.168.17.250'"
+alias sshtonw134="ssh -p '22' 'zero2ipo@172.168.11.134'"
 
 alias sshtokvmdc3='ssh -p 28777 root@solarck.top'
 alias sshtokvmdc8='ssh -p 28777 root@lunarch.top'

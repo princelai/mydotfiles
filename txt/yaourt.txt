@@ -11,6 +11,7 @@ autoconf
 automake
 awesome-terminal-fonts
 b43-fwcutter
+bazel
 besttrace
 bison
 bluedevil
@@ -21,7 +22,7 @@ cdrdao
 chromium
 cpupower
 cronie
-cuda
+cudnn
 cups-pdf
 darktable
 dhclient
@@ -55,7 +56,6 @@ goaccess
 gperf
 grub
 gsfonts
-gtk-theme-breath
 gwenview
 haproxy
 hexchat
@@ -142,7 +142,7 @@ patchutils
 pkgconf
 plasma-desktop
 plasma-pa
-plasma5-themes-breath
+plasma5-theme-adaptabreath
 poedit
 powertop
 print-manager
@@ -180,7 +180,6 @@ ttf-iosevka-term
 ttf-monaco
 typora
 udiskie
-unzip
 user-manager
 v2ray
 vi
@@ -201,4 +200,3 @@ xorg-xclipboard
 xorg-xinit
 xrdp
 yakuake
-zip

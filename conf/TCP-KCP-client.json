@@ -8,9 +8,6 @@
     "port": 1080,
     "protocol": "socks",
     "tag": "tcp-in",
-    "allocate": {
-      "strategy": "always"
-    },
     "domainOverride": ["tls", "http"],
     "sniffing": {
       "enabled": true,
