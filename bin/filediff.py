@@ -23,7 +23,7 @@ files = [
     '/usr/lib/systemd/system/v2ray@.service',
     '/usr/lib/systemd/system/shadowsocks-libev@.service',
     '/usr/lib/systemd/system/haproxy@.service', '/etc/haproxy/shadowsocks.cfg',
-    '/etc/haproxy/haproxy.cfg', '/etc/shadowsocks/Shadowsocks-haproxy.json'
+    '/etc/haproxy/haproxy.cfg', '/etc/shadowsocks/Shadowsocks-haproxy.json','/opt/bin/zsh_history_fix'
 ]
 
 curr_dir = Path(__file__).absolute().parent
