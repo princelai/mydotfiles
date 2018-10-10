@@ -6,9 +6,8 @@ autoload -Uz promptinit
 promptinit
 prompt agnoster
 
-export CONDA_PATH=/opt/Anaconda
 export ANDROID_PATH=/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/opt/android-sdk/tools/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
-export PATH=/opt/bin:/opt/cuda/bin:/opt/Anaconda/bin:$ANDROID_PATH:$PATH
+export PATH=/opt/bin:/opt/Anaconda/bin:$ANDROID_PATH:$PATH:/opt/cuda/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cuda/lib64
 export HISTFILE=~/.zsh_history
 export HISTSIZE=500

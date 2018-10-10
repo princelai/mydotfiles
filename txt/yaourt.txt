@@ -28,7 +28,6 @@ darktable
 dhclient
 dhcpcd
 dolphin-plugins
-dotnet-sdk
 downgrade
 dvd+rw-tools
 ecryptfs-utils
@@ -134,6 +133,7 @@ networkmanager-openvpn
 networkmanager-pptp
 networkmanager-vpnc
 nfs-utils
+nuget
 numlockx
 nutstore
 okular
@@ -161,6 +161,7 @@ qt5-translations
 rdesktop
 redis
 remarkable
+scons
 screenfetch
 sddm-breath-theme
 sddm-kcm
@@ -207,3 +208,4 @@ xorg-xclipboard
 xorg-xinit
 xrdp
 yakuake
+yasm
